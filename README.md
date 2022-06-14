@@ -34,6 +34,4 @@ npm run dev
 ## Project 
 
 
-This project is to practice my skills mostly css. I used Vitejs with Typescript, I know it's overkill just for a static page like this, I did it only for practice purposes. 
-
 The design is from a challenge by [Rocketseat](https://github.com/rocketseat-content).
