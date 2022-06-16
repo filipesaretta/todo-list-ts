@@ -1,0 +1,110 @@
+.container {
+  max-width: 736px;
+  margin: 0 auto;
+  margin-top: 4rem;
+}
+.info {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  & div { 
+    strong {
+      color: var(--purple);
+      margin-right: .5rem;
+    }
+    span {
+      background-color: var(--gray-400);
+      color: var(--gray-200);
+      border-radius: 1rem;
+      padding: .1rem .5rem;
+    }
+  } 
+}
+
+.emptyTask {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 244px;
+  color: var(--gray-300);
+  
+  p {
+    line-height: 1.4;
+    &:first-of-type  {
+      font-weight: 700;
+    }
+  }
+}
+
+.task {
+  background-color: var(--gray-500);
+  position: relative;
+  margin-top: 1.5rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    color: var(--gray-100);
+    line-height: 1.4;
+    cursor: pointer;
+   
+  }
+  
+  input[type="checkbox"]:checked + span {
+    color: var(--gray-300);
+    text-decoration: line-through;
+  }
+
+  input[type="checkbox"] {
+    margin-left: .5rem;
+    appearance: none;
+    background-color: transparent;
+    cursor: pointer;
+    /* Not removed via appearance */
+    margin: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 0.15rem solid var(--blue);
+    border-radius: 100%;
+    transform: translateY(-0.075em);
+    
+    display: grid;
+    place-content: center;
+  }
+  
+  input[type="checkbox"]::before {
+    content: "";
+    width: 0.65rem;
+    height: 0.65rem;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--gray-100);
+    transform-origin: bottom left;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  }
+  
+  input[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }
+  input[type="checkbox"]:checked {
+    background-color: var(--purple-dark);
+  }
+
+  svg {
+    margin-right: 1rem;
+    cursor: pointer;
+  }
+
+  
+}
+
+.task + .task {
+  margin-top: .75rem;
+}
