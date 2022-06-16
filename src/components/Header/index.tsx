@@ -4,20 +4,32 @@ import logo from '../../assets/logo.svg'
 import { TaskList } from '../TaskList';
 import style from './styles.module.scss'
 
+import { v4 as uuidv4 } from 'uuid'
+
+interface TasksProps {
+  id: string;
+  task: string;
+}
+
 export function Header() {
-  const [addTask, setAddTask] = useState([]);
+  const [tasks, setTasks] = useState<TasksProps[]>([]);
   const [newTask, setNewTask] = useState('');
 
   function handleAddTask(e: FormEvent) {
     e.preventDefault();
     if (newTask) {
-      setAddTask([...addTask, newTask])
+      setTasks([...tasks, { id: uuidv4(), task: newTask }])
     }
     setNewTask('');
   }
 
   function handleNewTask(e: ChangeEvent<HTMLInputElement>) {
     setNewTask(e.target.value);
+  }
+
+  function handleDeleteTask(taskToDelete: string) {
+    const newTaskToDelete = tasks.filter(task => task.id !== taskToDelete);
+    setTasks(newTaskToDelete);
   }
 
 
@@ -33,7 +45,7 @@ export function Header() {
           <button disabled={newTask ? false : true} type="submit">Create <PlusCircle size={20} weight='bold' /></button>
         </form>
       </div>
-      <TaskList content={addTask} />
+      <TaskList tasks={tasks} onDeleteTask={handleDeleteTask} />
     </>
   )
 }
