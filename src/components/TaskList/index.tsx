@@ -1,31 +1,63 @@
 import { ClipboardText, Trash } from 'phosphor-react'
+import { ChangeEvent, useState } from 'react';
 import style from './styles.module.scss'
 
-export function TaskList({ content }) {
+interface TaskListPros {
+  tasks: [{
+    id: string;
+    task: string;
+  }];
+  onDeleteTask: (task: string) => void;
+}
 
-  console.log(content.length);
+export function TaskList({ tasks, onDeleteTask }: TaskListPros) {
+
+  const [isChecked, setIsChecked] = useState<string[]>([])
+  let checkedList: string[] = [...isChecked];
+
+  console.log(tasks.length);
+
+  function handleDeleteTask(taskId: string) {
+    onDeleteTask(taskId)
+    checkedList.splice(isChecked.indexOf(taskId), 1);
+    setIsChecked(checkedList);
+  }
+
+  function createListOfCompleted(e: ChangeEvent<HTMLInputElement>) {
+    if (e.target.checked) {
+      checkedList = [...isChecked, e.target.value];
+    } else {
+      checkedList.splice(isChecked.indexOf(e.target.value), 1);
+    }
+    setIsChecked(checkedList);
+  }
+
   return (
     <div className={style.container}>
       <header className={style.info}>
         <div>
           <strong>Created Tasks</strong>
-          <span>0</span>
+          <span>{tasks.length}</span>
         </div>
         <div>
           <strong>Completed</strong>
-          <span>5</span>
+          <span>{isChecked.length} de {tasks.length}</span>
         </div>
       </header>
-      {content.length ?
-        content.map(task =>
-          <div className={style.task}>
-            <label htmlFor={task}>
-
-              <input type="checkbox" id={task} name={task} />
-              <span>{task}</span>
-
+      {tasks.length ?
+        tasks.map(task =>
+          <div className={style.task} key={task.id}>
+            <label htmlFor={task.id}>
+              <input type="checkbox"
+                id={task.id}
+                name={task.task}
+                value={task.id}
+                onChange={createListOfCompleted} />
+              <span>{task.task}</span>
             </label>
-            <Trash size={24} />
+            <button onClick={() => handleDeleteTask(task.id)}>
+              <Trash size={24} />
+            </button>
           </div>
         )
         :
