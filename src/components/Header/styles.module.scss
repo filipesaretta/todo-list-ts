@@ -21,9 +21,7 @@
 
   input {
     width: 39.875rem;
-    
     padding: 1rem;
-
     background: var(--gray-500);
     border-radius: 8px;
     border: none;
@@ -44,11 +42,17 @@
     font-weight: bold;
     cursor: pointer;
     background: var(--blue-dark);
-    transition: background-color 200ms ease;
+    transition: background-color 200ms ease, filter 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
     
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: var(--blue);
     }
+
+    &:disabled {
+      cursor: not-allowed;
+      filter: brightness(.8);
+    }
+
     svg {
       margin-left: .5rem;
     }
