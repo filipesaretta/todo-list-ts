@@ -1,9 +1,12 @@
+import { Header } from "./components/Header"
+import style from './App.module.scss'
+import { TaskList } from "./components/TaskList"
 
 function App() {
 
   return (
-    <div>
-      <h1>My Todo</h1>
+    <div className={style.container}>
+      <Header />
     </div>
   )
 }
