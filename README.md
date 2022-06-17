@@ -13,6 +13,12 @@
 - Typescript
 - SCSS
 
+## Project 
+
+Even though it's a simple project it was great to review some key concepts of react as state, immutability, components, props, prop types.
+
+![Working Project](./src/assets/todo-ts.gif)
+
 ## Getting Started
 
 Clone the project and access the folder.
@@ -20,18 +26,15 @@ Clone the project and access the folder.
 ```
 git clone https://github.com/filipesaretta/todo-list-ts
 
-cd search-dev-github
+cd todo-list-ts
 ```
 
 Install the dependencies and start.
 
-```
+``` 
 npm install
 
 npm run dev
 ```
-
-## Project 
-
 
 The design is from a challenge by [Rocketseat](https://github.com/rocketseat-content).
